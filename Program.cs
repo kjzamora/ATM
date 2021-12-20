@@ -12,7 +12,7 @@ namespace ATM
         static void Main(string[] args)
         {
 
-            IDataAccess _data = new DataAccess();
+            IDataAccess _data = Instantiate.CreateDataAccess();
             List<UserModel> user;
             string sql = "select * from tbluseraccount";
             string MySqlBaseConnectionStringBuilder = @"server=localhost; database=usersdb; user id=DBAdmin; password=admin;";

@@ -13,11 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DataLibrary\DataLibrary.csproj" />
+    <Folder Include="docs\images\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="docs\images\" />
+    <ProjectReference Include="..\DatabaseAccessLibrary\DatabaseAccessLibrary.csproj" />
   </ItemGroup>
 
 </Project>
