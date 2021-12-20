@@ -25,3 +25,6 @@ hit next/accept defaults everywhere else
 GUI: Database -> Connect to database ->
 	Select stored connection -> Local instance MySQL router
 	password -> store in vault -> MySQL root pass
+
+### tbluseraccont Setup
+[Contribution guidelines for this project](docs/images/MySQL_userdb_tlbuseraccount.png)
