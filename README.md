@@ -28,3 +28,7 @@ GUI: Database -> Connect to database ->
 
 ### tbluseraccont Setup
 [Contribution guidelines for this project](docs/images/MySQL_userdb_tlbuseraccount.png)
+<p align="center">
+  <img src="docs/images/MySQL_userdb_tlbuseraccount.png" width="1000" title="hover text">
+  <img src="docs/images/MySQL_userdb_tlbuseraccount.png" width="1000" alt="accessibility text">
+</p>
