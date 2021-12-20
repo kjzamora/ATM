@@ -23,6 +23,7 @@ namespace ATM
                 foreach (var acc in user)
                 {
                     Console.WriteLine(acc.UserName);
+                    Console.WriteLine(acc.Balance);
                 }
             }
             
