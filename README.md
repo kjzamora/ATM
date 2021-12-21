@@ -1,9 +1,9 @@
 # ATM C# Project
 
-With this project, I had 3 main goals:
+This is a console-based application simulating an ATM's' menu options. With this project, I had 3 main goals:
 
 - Create my first C# program and familiarize myself with the sytatx
-- Introduce myself to MySQL and the interactions between the program and an external database
+- Introduce myself to MySQL and the interactions between a program and an external database
 - Attempt to properly implement and familiarize myself with the SOLID principles
 
 ## Dependencies
@@ -15,21 +15,22 @@ This project utilizes some additional projects and librarys:
 
 ## MySQL Setup
 
-	This project will utilize a local hosted MySQL database
+This project will utilize a locally hosted MySQL database
 
-	To Setup the MySQL database:
+To Setup the MySQL database:
 
-	Need to intsall MySQL (do your own Google search):
-	Run installer and install by selection using developers install option
-	https://www.youtube.com/watch?v=WuBcTJnIuzo
+- Intsall MySQL
+- Run installer and install by selection using developers install option
+- [Reference Video](https://www.youtube.com/watch?v=WuBcTJnIuzo)
 
 ### My Default Credentials for this project
-MySQL root pass: SQLpass
+- MySQL root 
+- pass: SQLpass
 
 ### My Default MySQL Account:
 MySQL user account:
-user: DBAdmin
-pass: admin
+- user: DBAdmin
+- pass: admin
 
 ### Continuing Installation:
 hit next/accept defaults everywhere else
