@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RetrieveUserMainMenuInput
+    class RetrieveUserCustomWithdrawInput
     {
         public static int Input()
         {
@@ -19,7 +15,7 @@ namespace ATM
 
                 if (int.TryParse(line, out value))
                 {
-                    if (value > 0 && value < 6)
+                    if (value > 0 && value < int.MaxValue)
                     {
                         done = true;
                         break;
@@ -28,14 +24,14 @@ namespace ATM
                     {
                         Console.WriteLine("Invalid selection. Please try again");
                         Console.WriteLine();
-                        Console.Write("Option: ");
+                        Console.Write("Amount: ");
                     }
                 }
                 else
                 {
                     Console.WriteLine("Invalid selection. Please try again");
                     Console.WriteLine();
-                    Console.Write("Option: ");
+                    Console.Write("Amount: ");
                 }
             }
             while (done == false);

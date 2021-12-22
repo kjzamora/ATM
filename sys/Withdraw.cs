@@ -7,19 +7,30 @@ namespace ATM
 
         public static int Amount(int mainMenuOption)
         {
+            int amountToWithdraw = 0;
             switch (mainMenuOption)
             {
+                
                 case 1:
-                    int amountToWithdraw = 20;
-                    return amountToWithdraw;
-                case 2:
-                    Console.WriteLine();
+                    amountToWithdraw = 20;
                     break;
-                default:
-                    Console.WriteLine("This is not a valid option response");
+                case 2:
+                    amountToWithdraw = 40;
+                    break;
+                case 3:
+                    amountToWithdraw = 60;
+                    break;
+                case 4:
+                    amountToWithdraw = 80;
+                    break;
+                case 5:
+                    amountToWithdraw = 100;
+                    break;
+                case 6:
+                    amountToWithdraw = RetrieveUserCustomWithdrawInput.Input();
                     break;
             }
-            return -1;
+            return amountToWithdraw;
         }
     }
 }

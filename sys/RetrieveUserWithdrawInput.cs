@@ -10,29 +10,36 @@ namespace ATM
     {
         public static int Input()
         {
-            string line = Console.ReadLine();
             int value;
-            if (int.TryParse(line, out value))
+            bool done = false;
+            string line;
+            do
             {
-                // this is an int 
-                // do you minimum number check here
-                if (value > 0 && value < 7)
+                line = Console.ReadLine();
+
+                if (int.TryParse(line, out value))
                 {
-                    return value;
+                    if (value > 0 && value < 7)
+                    {
+                        done = true;
+                        break;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Invalid selection. Please try again");
+                        Console.WriteLine();
+                        Console.Write("Option: ");
+                    }
                 }
                 else
                 {
                     Console.WriteLine("Invalid selection. Please try again");
-                    Input();
+                    Console.WriteLine();
+                    Console.Write("Option: ");
                 }
             }
-            else
-            {
-                // this is not an int
-                Console.WriteLine("Invalid selection. Please try again");
-                Input();
-            }
-            return -1;
+            while (done == false);
+            return value;
         }
     }
 }
