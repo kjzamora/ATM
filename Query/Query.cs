@@ -20,5 +20,9 @@ namespace ATM
         {
             return $"select * from tbluseraccount where username='{ userName }' and pin='{ pin }'";
         }
+        public static string UpdateBalance(string userName, string pin, string balance)
+        {
+            return $"update tbluseraccount set balance='{ balance }' where username='{ userName }' and pin='{ pin }'";
+        }
     }
 }

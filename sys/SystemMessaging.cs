@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace ATM
 {
-    public class SystemMessaging : MainMenuOptions
+    public class SystemMessaging : MainMenuOptionsMessaging
     {
         public static void WelcomeMessage()
         {

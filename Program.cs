@@ -11,6 +11,7 @@ namespace ATM
     {
         static void Main(string[] args)
         {
+
             // Startup
             SystemMessaging.WelcomeMessage();
             IDataAccess _data = Instantiate.CreateDataAccess(); // Create MySQL connection
@@ -28,13 +29,16 @@ namespace ATM
             userQuery = _data.LoadData<UserModel, dynamic>(sql, new { }, connection);
 
             // Add user selection options
-            string mainMenuOption = MainMenuOptions.UserOptions();
-            string withdrawOption = WithdrawMenuOptions.Selection(mainMenuOption);
+            MainMenuOptionsMessaging.UserOptions();
+            int mainMenuOption = RetrieveUserMainMenuInput.Input();
+            MainMenu.Selection(mainMenuOption);
+            int withdrawMenuOption = RetrieveUserWithdrawInput.Input();
+            int withdrawOptionAmount = Withdraw.Amount(withdrawMenuOption);
 
             // Update balance based on previous selection
-            string balanceUpdated = "1";
+            string balanceUpdated = "1"; // temp - delete
 
-            balanceUpdated = UserOptions.UpdateBalance(userName, pin, balanceUpdated);
+            balanceUpdated = Query.UpdateBalance(userName, pin, balanceUpdated);
             _data.SaveData(balanceUpdated, new { }, connection);
 
 
