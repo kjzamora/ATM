@@ -11,25 +11,34 @@ namespace ATM
     {
         static void Main(string[] args)
         {
+            // Startup
             SystemMessaging.WelcomeMessage();
+            IDataAccess _data = Instantiate.CreateDataAccess(); // Create MySQL connection
+            string connection = MySQLConnection.Connection(); // Create MySQL connection
 
-            IDataAccess _data = Instantiate.CreateDataAccess();
-            string connection = MySQLConnection.Connection();
-
-            // Get username
+            // Login Verification
             List<UserModel> userQuery = null;
-            string userName = SystemMessaging.UserNamePrompt();
-            userQuery = CheckClass.UserNameCheck(_data, connection, ref userQuery, ref userName);
-
-            // Get pin number
-            string pin = SystemMessaging.PinPrompt();
-            userQuery = CheckClass.PinCheck(_data, connection, ref userQuery, ref userName, ref pin);
+            string userName = SystemMessaging.UserNamePrompt(); // Get username from user input
+            userQuery = CheckClass.UserNameCheck(_data, connection, ref userQuery, ref userName); // Verify username
+            string pin = SystemMessaging.PinPrompt(); // Get pin number from user input
+            userQuery = CheckClass.PinCheck(_data, connection, ref userQuery, ref userName, ref pin); // Verify pin
 
             // Retrieve all user data
             string sql = Query.UserData($"{ userName }", $"{ pin }");
             userQuery = _data.LoadData<UserModel, dynamic>(sql, new { }, connection);
 
-            Console.Read();
+            // Add user selection options
+            string mainMenuOption = MainMenuOptions.UserOptions();
+            string withdrawOption = WithdrawMenuOptions.Selection(mainMenuOption);
+
+            // Update balance based on previous selection
+            string balanceUpdated = "1";
+
+            balanceUpdated = UserOptions.UpdateBalance(userName, pin, balanceUpdated);
+            _data.SaveData(balanceUpdated, new { }, connection);
+
+
+            //Console.Read();
 
             //foreach (var acc in userQuery)
             //{

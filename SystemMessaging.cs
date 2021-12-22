@@ -1,16 +1,49 @@
 ﻿using System;
+using System.Linq;
 
 namespace ATM
 {
-    public class SystemMessaging
+    public class SystemMessaging : MainMenuOptions
     {
         public static void WelcomeMessage()
         {
-             Console.WriteLine("-----Welcome to ATM-----\n\n");
+            //Console.WriteLine("-----Welcome to ATM-----\n\n");
+            // Ascii art generated from https://patorjk.com/software/taag/#p=display&w=%23&f=Slant%20Relief&t=ATM using Slant Relief font
+            string textToEnter = @"
+#############################################################################
+####                                                                     ####
+####                             WELCOME                                 ####
+####                                                                     ####
+#############################################################################
+
+#############################################################################
+#############################################################################
+####_____/\\\\\\\\\_____/\\\\\\\\\\\\\\\__/\\\\____________/\\\\_############
+#####___/\\\\\\\\\\\\\__\///////\\\/////__\/\\\\\\________/\\\\\\_###########
+######__/\\\/////////\\\_______\/\\\_______\/\\\//\\\____/\\\//\\\_##########
+#######_\/\\\_______\/\\\_______\/\\\_______\/\\\\///\\\/\\\/_\/\\\_#########
+########_\/\\\\\\\\\\\\\\\_______\/\\\_______\/\\\__\///\\\/___\/\\\_########
+#########_\/\\\/////////\\\_______\/\\\_______\/\\\____\///_____\/\\\_#######
+##########_\/\\\_______\/\\\_______\/\\\_______\/\\\_____________\/\\\_######
+###########_\/\\\_______\/\\\_______\/\\\_______\/\\\_____________\/\\\_#####
+############_\///________\///________\///________\///______________\///__####
+#############################################################################
+#############################################################################
+            ";
+            var lines = textToEnter.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            var longestLength = lines.Max(line => line.Length);
+            var leadingSpaces = new string(' ', (Console.WindowWidth - longestLength) / 2);
+            var centeredText = string.Join(Environment.NewLine,
+                lines.Select(line => leadingSpaces + line));
+            Console.WriteLine(centeredText);
+            Console.WriteLine();
+            Console.WriteLine();
         }
 
         public static string UserNamePrompt()
         {
+            Console.WriteLine("Please enter your username");
+            Console.WriteLine();
             Console.Write("User:  ");
             string userName = Console.ReadLine();
             Console.WriteLine();
@@ -30,9 +63,9 @@ namespace ATM
             return pin;
         }
 
-        public static string InvalidPin(string pin)
+        public static void InvalidPin()
         {
-            return $"This username '{ pin }' does not exist. Please try again.";
+            Console.WriteLine("This pin you have entered does not work. Please try again.");
         }
 
         public static void ExceededLoginAttempts()

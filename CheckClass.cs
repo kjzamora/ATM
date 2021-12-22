@@ -63,8 +63,8 @@ namespace ATM
                 }
                 else if (valid == false)
                 {
-                    SystemMessaging.InvalidPin(userName);
-                    userName = SystemMessaging.PinPrompt();
+                    SystemMessaging.InvalidPin();
+                    pin = SystemMessaging.PinPrompt();
                 }
                 else
                 {
