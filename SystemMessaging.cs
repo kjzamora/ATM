@@ -30,7 +30,7 @@ namespace ATM
             return pin;
         }
 
-        public static string Pin(string pin)
+        public static string InvalidPin(string pin)
         {
             return $"This username '{ pin }' does not exist. Please try again.";
         }

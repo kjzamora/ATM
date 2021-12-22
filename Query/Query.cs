@@ -8,11 +8,11 @@ namespace ATM
 {
     public static class Query
     {
-        public static string VerifyUser(string userName)
+        public static string CheckUser(string userName)
         {
             return $"select username from tbluseraccount where username='{ userName }'";
         }
-        public static string VerifyPin(string userName, string pin)
+        public static string CheckPin(string userName, string pin)
         {
             return $"select pin from tbluseraccount where username='{ userName }' and pin='{ pin }'";
         }
