@@ -16,7 +16,7 @@ namespace ATM
             if (currBalance < 0 || currBalance - amount < 0)
             {
                 Console.WriteLine("Insufficient funds.");
-                // Add connection page to withdraw options. Page should handle withdraw program flow
+                WithdrawMenu.Control();
             }
             else
             {

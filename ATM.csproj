@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <Folder Include="docs\images\" />
-    <Folder Include="sys\withdraw\" />
   </ItemGroup>
 
   <ItemGroup>
