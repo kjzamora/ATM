@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RetrieveUserWithdrawInput
+    class RetrieveWithdrawOption
     {
         public static int Input()
         {

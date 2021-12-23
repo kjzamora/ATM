@@ -2,7 +2,7 @@
 
 namespace ATM
 {
-    public class Withdraw
+    public class WithdrawQuick
     {
 
         public static int Amount(int mainMenuOption)
@@ -26,10 +26,9 @@ namespace ATM
                 case 5:
                     amountToWithdraw = 100;
                     break;
-                case 6:
-                    amountToWithdraw = RetrieveUserCustomWithdrawInput.Input();
-                    // execute withdraw to mysql
-                    break;
+                //case 6:
+                //    amountToWithdraw = RetrieveUserCustomWithdrawInput.Input(); // Should I call this here? Or is there a way to "return" to a screen instead... Feels like this breaks single responsibility principle
+                //    break;
             }
             return amountToWithdraw;
         }

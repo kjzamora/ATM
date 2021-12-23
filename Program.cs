@@ -29,11 +29,8 @@ namespace ATM
             userQuery = _data.LoadData<UserModel, dynamic>(sql, new { }, connection);
 
             // Add user selection options
-            MainMenuOptionsMessaging.UserOptions();
-            int mainMenuOption = RetrieveUserMainMenuInput.Input();
-            MainMenu.Selection(mainMenuOption);
-            int withdrawMenuOption = RetrieveUserWithdrawInput.Input();
-            int withdrawOptionAmount = Withdraw.Amount(withdrawMenuOption);
+            MainMenu.Control();
+            WithdrawMenu.Control();
 
             // Update balance based on previous selection
 

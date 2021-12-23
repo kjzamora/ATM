@@ -6,14 +6,15 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class MainMenu
+    public class MainMenuOptions
     {
         public static void Selection(int selection)
         {
             switch (selection)
             {
                 case 1: // Withdraw Cash
-                    WithdrawMenuOptionsMessaging.WithdrawOptions();
+                    // call withdraw menu control
+                    
                     break;
                 case 2: // Cash Transfer
                     break;
