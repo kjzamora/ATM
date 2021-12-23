@@ -28,6 +28,7 @@ namespace ATM
                     break;
                 case 6:
                     amountToWithdraw = RetrieveUserCustomWithdrawInput.Input();
+                    // execute withdraw to mysql
                     break;
             }
             return amountToWithdraw;

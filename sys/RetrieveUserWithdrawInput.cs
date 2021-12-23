@@ -16,7 +16,6 @@ namespace ATM
             do
             {
                 line = Console.ReadLine();
-
                 if (int.TryParse(line, out value))
                 {
                     if (value > 0 && value < 7)

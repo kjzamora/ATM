@@ -77,6 +77,8 @@ namespace ATM
         public static void SystemExitMessage()
         {
             Console.WriteLine("System connection will now close.");
+            Console.WriteLine();
+            Console.WriteLine("Have a great day!");
         }
     }
 }

@@ -36,6 +36,7 @@ namespace ATM
             int withdrawOptionAmount = Withdraw.Amount(withdrawMenuOption);
 
             // Update balance based on previous selection
+
             string balanceUpdated = "1"; // temp - delete
 
             balanceUpdated = Query.UpdateBalance(userName, pin, balanceUpdated);

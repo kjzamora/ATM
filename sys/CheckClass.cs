@@ -6,7 +6,7 @@ namespace ATM
 {
     public class CheckClass
     {
-
+        // Should break out into 3 separate classes. Fails the Single Responsibility Principle
         internal static bool QueryIsNullOrNot(string message, List<UserModel> userModelObj)
         {
             if (userModelObj.Count != 0)
