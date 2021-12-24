@@ -16,14 +16,10 @@ namespace ATM
             if (currBalance < 0 || currBalance - amount < 0)
             {
                 Console.WriteLine("Insufficient funds.");
-                WithdrawMenu.Control();
-            }
-            else
-            {
-                return currBalance - amount; 
+                WithdrawMenu.Control(); // not sure if this is best practice... feel like it should throw an error and return control back to main instead...
             }
 
-            return currBalance - amount; //temp - just to compile. remove later; bad coding
+            return currBalance - amount; 
         }
     }
 }

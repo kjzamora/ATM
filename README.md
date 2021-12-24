@@ -9,6 +9,7 @@ This is a console-based application simulating an ATM's' menu options. With this
 ## Dependencies
 This project utilizes some additional projects and librarys:
 
+- [Autofac](https://github.com/autofac/Autofac)
 - [Dapper](https://github.com/DapperLib/Dapper)
 - [MySQL.data](https://www.mysql.com/)
 - [Database Access Library](https://github.com/kjzamora/DatabaseAccessLibrary)

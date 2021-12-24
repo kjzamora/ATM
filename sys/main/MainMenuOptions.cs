@@ -6,15 +6,20 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class MainMenuOptions
+    public class MainMenuOptions : IMainMenuOptions
     {
-        public static void Selection(int selection)
+        ISystemMessaging _systemMessaging;
+
+        public MainMenuOptions(ISystemMessaging systemMessaging)
+        {
+            _systemMessaging = systemMessaging;
+        }
+        public void Selection(int selection)
         {
             switch (selection)
             {
                 case 1: // Withdraw Cash
-                    // call withdraw menu control
-                    
+                    WithdrawMenu.Control();
                     break;
                 case 2: // Cash Transfer
                     break;
@@ -23,7 +28,7 @@ namespace ATM
                 case 4: // Display Balanace
                     break;
                 case 5: // Exit
-                    SystemMessaging.SystemExitMessage();
+                    _systemMessaging.SystemExitMessage();
                     System.Environment.Exit(1);
                     break;
             }

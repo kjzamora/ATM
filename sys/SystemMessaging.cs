@@ -3,11 +3,11 @@ using System.Linq;
 
 namespace ATM
 {
-    public class SystemMessaging : MainMenuOptionsMessaging
+    public class SystemMessaging : ISystemMessaging
     {
-        public static void WelcomeMessage()
+
+        public void WelcomeMessage()
         {
-            //Console.WriteLine("-----Welcome to ATM-----\n\n");
             // Ascii art generated from https://patorjk.com/software/taag/#p=display&w=%23&f=Slant%20Relief&t=ATM using Slant Relief font
             string textToEnter = @"
 #############################################################################
@@ -40,41 +40,41 @@ namespace ATM
             Console.WriteLine();
         }
 
-        public static string UserNamePrompt()
+        public string UserNamePrompt()
         {
             Console.WriteLine("Please enter your username");
             Console.WriteLine();
             Console.Write("User:  ");
-            string userName = Console.ReadLine();
+            string userName = Console.ReadLine(); // refactor... system messaging should not handle console readline operations
             Console.WriteLine();
             return userName;
         }
 
-        public static string InvalidUser(string userName)
+        public string InvalidUser(string userName)
         {
-            return $"This username '{ userName }' does not exist. Please try again.";
+            return $"This username '{ userName }' does not exist. Please try again."; // refactor...
         }
 
-        public static string PinPrompt()
+        public string PinPrompt()
         {
             Console.Write("Pin:  ");
-            string pin = Console.ReadLine();
+            string pin = Console.ReadLine(); // refactor...
             Console.WriteLine();
             return pin;
         }
 
-        public static void InvalidPin()
+        public void InvalidPin()
         {
             Console.WriteLine("This pin you have entered does not work. Please try again.");
         }
 
-        public static void ExceededLoginAttempts()
+        public void ExceededLoginAttempts()
         {
             Console.WriteLine("You have exceeded the number of attempts you can login. You're account will now be locked.");
             Console.WriteLine("To restore your accounts access, please contact your Administrator");
         }
 
-        public static void SystemExitMessage()
+        public void SystemExitMessage()
         {
             Console.WriteLine("System connection will now close.");
             Console.WriteLine();

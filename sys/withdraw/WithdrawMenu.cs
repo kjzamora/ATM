@@ -8,7 +8,7 @@ namespace ATM
 {
     class WithdrawMenu
     {
-        public static void Control ()
+        public static int Control ()
         {
             WithdrawMenuOptionsMessaging.WithdrawOptions();
             int withdrawMenuOption = RetrieveWithdrawOption.Input();
@@ -20,7 +20,8 @@ namespace ATM
             else
             {
                 withdrawOptionAmount = RetrieveUserCustomWithdrawInput.Input();
-            } 
+            }
+            return withdrawOptionAmount;
         }
     }
 }

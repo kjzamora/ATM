@@ -8,11 +8,17 @@ namespace ATM
 {
     class MainMenu
     {
-        public static void Control()
+        IMainMenuOptions _mainMenuOptions;
+
+        public MainMenu(IMainMenuOptions mainMenuOptions)
+        {
+            _mainMenuOptions = mainMenuOptions;
+        }
+        public void Control()
         {
             MainMenuOptionsMessaging.UserOptions();
             int mainMenuOption = RetrieveUserMainMenuInput.Input();
-            MainMenuOptions.Selection(mainMenuOption);
+            _mainMenuOptions.Selection(mainMenuOption);
         }
     }
 }

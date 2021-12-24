@@ -6,6 +6,12 @@ namespace ATM
 {
     public class CheckClass
     {
+        ISystemMessaging _systemMessaging;
+
+        public CheckClass(ISystemMessaging systemMessaging)
+        {
+            _systemMessaging = systemMessaging;
+        }
         // Should break out into 3 separate classes. Fails the Single Responsibility Principle
         internal static bool QueryIsNullOrNot(string message, List<UserModel> userModelObj)
         {
@@ -20,7 +26,7 @@ namespace ATM
             }
         }
 
-        public static List<UserModel> UserNameCheck(IDataAccess _data, string connection, ref List<UserModel> userQuery, ref string userName)
+        public List<UserModel> UserNameCheck(IDataAccess _data, string connection, ref List<UserModel> userQuery, ref string userName)
         {
             bool valid;
             for (int i = 0; i <= 2; i++)
@@ -30,14 +36,14 @@ namespace ATM
                 valid = QueryIsNullOrNot("Invalid username, please try again", userQuery);
                 if (i == 2)
                 {
-                    SystemMessaging.ExceededLoginAttempts();
-                    SystemMessaging.SystemExitMessage();
+                    _systemMessaging.ExceededLoginAttempts();
+                    _systemMessaging.SystemExitMessage();
                     System.Environment.Exit(1);
                 }
                 else if (valid == false)
                 {
-                    SystemMessaging.InvalidUser(userName);
-                    userName = SystemMessaging.UserNamePrompt();
+                    _systemMessaging.InvalidUser(userName);
+                    userName = _systemMessaging.UserNamePrompt();
                 }
                 else
                 {
@@ -47,7 +53,7 @@ namespace ATM
             return userQuery = null;
         }
 
-        public static List<UserModel> PinCheck(IDataAccess _data, string connection, ref List<UserModel> userQuery, ref string userName, ref string pin)
+        public List<UserModel> PinCheck(IDataAccess _data, string connection, ref List<UserModel> userQuery, ref string userName, ref string pin)
         {
             bool valid;
             for (int i = 0; i <= 2; i++)
@@ -57,14 +63,14 @@ namespace ATM
                 valid = QueryIsNullOrNot("Invalid username, please try again", userQuery);
                 if (i == 2)
                 {
-                    SystemMessaging.ExceededLoginAttempts();
-                    SystemMessaging.SystemExitMessage();
+                    _systemMessaging.ExceededLoginAttempts();
+                    _systemMessaging.SystemExitMessage();
                     System.Environment.Exit(1);
                 }
                 else if (valid == false)
                 {
-                    SystemMessaging.InvalidPin();
-                    pin = SystemMessaging.PinPrompt();
+                    _systemMessaging.InvalidPin();
+                    pin = _systemMessaging.PinPrompt();
                 }
                 else
                 {
