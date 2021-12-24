@@ -7,10 +7,12 @@ namespace ATM
     public class CheckClass
     {
         ISystemMessaging _systemMessaging;
+        IQueryString _queryString;
 
-        public CheckClass(ISystemMessaging systemMessaging)
+        public CheckClass(ISystemMessaging systemMessaging, IQueryString queryString)
         {
             _systemMessaging = systemMessaging;
+            _queryString = queryString;
         }
         // Should break out into 3 separate classes. Fails the Single Responsibility Principle
         internal static bool QueryIsNullOrNot(string message, List<UserModel> userModelObj)
@@ -31,7 +33,7 @@ namespace ATM
             bool valid;
             for (int i = 0; i <= 2; i++)
             {
-                string checkUser = Query.CheckUser($"{ userName }");
+                string checkUser = _queryString.CheckUser($"{ userName }");
                 userQuery = _data.LoadData<UserModel, dynamic>(checkUser, new { }, connection);
                 valid = QueryIsNullOrNot("Invalid username, please try again", userQuery);
                 if (i == 2)
@@ -58,7 +60,7 @@ namespace ATM
             bool valid;
             for (int i = 0; i <= 2; i++)
             {
-                string checkUserPin = Query.CheckPin($"{ userName }", $"{ pin }");
+                string checkUserPin = _queryString.CheckPin($"{ userName }", $"{ pin }");
                 userQuery = _data.LoadData<UserModel, dynamic>(checkUserPin, new { }, connection);
                 valid = QueryIsNullOrNot("Invalid username, please try again", userQuery);
                 if (i == 2)

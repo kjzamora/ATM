@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public static class MySQLConnection
+    public class MySQLConnection : IMySQLConnection
     {
-        public static string Connection()
+        public string Connection()
         {
             return @"server=localhost; database=usersdb; user id=DBAdmin; password=admin;";
         }

@@ -11,22 +11,26 @@ namespace ATM
     {
         IDataAccess _dataAccess;
         ISystemMessaging _systemMessaging;
+        IEstablishSQLConnection _establishSQLConnection;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging)
+        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, IEstablishSQLConnection establishSQLConnection)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
+            _establishSQLConnection = establishSQLConnection;
         }
 
         public void Run()
         {
             _systemMessaging.WelcomeMessage();
+            _establishSQLConnection.RunQuery();
 
-            List<UserModel> userQuery;
-            string connection = MySQLConnection.Connection();
-            //string sql = Query.UserData($"{ userName }", $"{ pin }");
-            string sql = Query.UserData("therock", "2222");
-            userQuery = _dataAccess.LoadData<UserModel, dynamic>(sql, new { }, connection);
+
+            //List<UserModel> userQuery;
+            //string connection = MySQLConnection.Connection();
+            ////string sql = Query.UserData($"{ userName }", $"{ pin }");
+            //string sql = QueryString.UserData("therock", "2222");
+            //userQuery = _dataAccess.LoadData<UserModel, dynamic>(sql, new { }, connection);
         }
     }
 }
