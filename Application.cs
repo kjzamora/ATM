@@ -11,20 +11,28 @@ namespace ATM
     {
         IDataAccess _dataAccess;
         ISystemMessaging _systemMessaging;
-        IEstablishSQLConnection _establishSQLConnection;
+        ICheckUser _checkUser;
+        IRetrieveUserInput _retrieveUserInput;
+        ICheckPin _checkPin;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, IEstablishSQLConnection establishSQLConnection)
+        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
-            _establishSQLConnection = establishSQLConnection;
+            _checkUser = checkUser;
+            _retrieveUserInput = retrieveUserInput;
+            _checkPin = checkPin;
         }
 
         public void Run()
         {
             _systemMessaging.WelcomeMessage();
             _systemMessaging.UserNamePrompt();
-            _establishSQLConnection.RunQuery();
+            string userName = _retrieveUserInput.Input();
+            _checkUser.Run(userName);
+            _systemMessaging.PinPrompt();
+            string pin = _retrieveUserInput.Input();
+            _checkPin.Run(userName, pin);
 
 
             //List<UserModel> userQuery;

@@ -45,9 +45,6 @@ namespace ATM
             Console.WriteLine("Please enter your username");
             Console.WriteLine();
             Console.Write("User:  ");
-            //string userName = Console.ReadLine(); // refactor... system messaging should not handle console readline operations
-            //Console.WriteLine();
-            //return userName;
         }
 
         public string InvalidUser(string userName)
@@ -55,12 +52,9 @@ namespace ATM
             return $"This username '{ userName }' does not exist. Please try again."; // refactor...
         }
 
-        public string PinPrompt()
+        public void PinPrompt()
         {
             Console.Write("Pin:  ");
-            string pin = Console.ReadLine(); // refactor...
-            Console.WriteLine();
-            return pin;
         }
 
         public void InvalidPin()
