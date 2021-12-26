@@ -8,11 +8,13 @@ namespace ATM
     {
         ISystemMessaging _systemMessaging;
         IQueryString _queryString;
+        IRetrieveUserInput _retrieveUserInput;
 
-        public CheckClass(ISystemMessaging systemMessaging, IQueryString queryString)
+        public CheckClass(ISystemMessaging systemMessaging, IQueryString queryString, IRetrieveUserInput retrieveUserInput)
         {
             _systemMessaging = systemMessaging;
             _queryString = queryString;
+            _retrieveUserInput = retrieveUserInput;
         }
         // Should break out into 3 separate classes. Fails the Single Responsibility Principle
         internal static bool QueryIsNullOrNot(string message, List<UserModel> userModelObj)
@@ -45,7 +47,8 @@ namespace ATM
                 else if (valid == false)
                 {
                     _systemMessaging.InvalidUser(userName);
-                    userName = _systemMessaging.UserNamePrompt();
+                    _systemMessaging.UserNamePrompt();
+                    userName = _retrieveUserInput.Input();
                 }
                 else
                 {

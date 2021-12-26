@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ATM.Models
 {
-    public class UserModel : IUserModel
+    public class UserModel
     {
         public int Id { get; set; }
         public string UserName { get; set; }

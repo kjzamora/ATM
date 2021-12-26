@@ -20,6 +20,7 @@ namespace ATM
             builder.RegisterType<MainMenuOptions>().As<IMainMenuOptions>();
             builder.RegisterType<QueryString>().As<IQueryString>();
             builder.RegisterType<MySQLConnection>().As<IMySQLConnection>();
+            builder.RegisterType<RetrieveUserInput>().As<IRetrieveUserInput>();
 
             return builder.Build();
         }

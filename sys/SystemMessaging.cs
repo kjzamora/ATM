@@ -40,14 +40,14 @@ namespace ATM
             Console.WriteLine();
         }
 
-        public string UserNamePrompt()
+        public void UserNamePrompt()
         {
             Console.WriteLine("Please enter your username");
             Console.WriteLine();
             Console.Write("User:  ");
-            string userName = Console.ReadLine(); // refactor... system messaging should not handle console readline operations
-            Console.WriteLine();
-            return userName;
+            //string userName = Console.ReadLine(); // refactor... system messaging should not handle console readline operations
+            //Console.WriteLine();
+            //return userName;
         }
 
         public string InvalidUser(string userName)

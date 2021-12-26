@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class RetrieveUserInput
+    public class RetrieveUserInput : IRetrieveUserInput
     {
-        public static string Input()
+        public string Input()
         {
             return Console.ReadLine();
         }

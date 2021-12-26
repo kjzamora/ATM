@@ -23,6 +23,7 @@ namespace ATM
         public void Run()
         {
             _systemMessaging.WelcomeMessage();
+            _systemMessaging.UserNamePrompt();
             _establishSQLConnection.RunQuery();
 
 

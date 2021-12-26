@@ -10,7 +10,8 @@ namespace ATM
     {
         public string Connection()
         {
-            return @"server=localhost; database=usersdb; user id=DBAdmin; password=admin;";
+            return @"server=localhost; database=usersdb; user id=root; password=SQLpass;";
+            //return @"server=localhost; database=usersdb; user id=DBAdmin; password=admin;"; -- temporary... restore when back home
         }
     }
 }

@@ -7,7 +7,7 @@
         string InvalidUser(string userName);
         string PinPrompt();
         void SystemExitMessage();
-        string UserNamePrompt();
+        void UserNamePrompt();
         void WelcomeMessage();
     }
 }

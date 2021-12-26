@@ -11,23 +11,24 @@ namespace ATM
     {
         IMySQLConnection _mySQLConnection;
         IQueryString _queryString;
-        //IUserModel _userModel;
         IDataAccess _dataAccess;
+        IRetrieveUserInput _retrieveUserInput;
 
-        public EstablishSQLConnection(IMySQLConnection mySQLConnection, IQueryString queryString, IDataAccess dataAccess)
+        public EstablishSQLConnection(IMySQLConnection mySQLConnection, IQueryString queryString, IDataAccess dataAccess, IRetrieveUserInput retrieveUserInput)
         {
             _mySQLConnection = mySQLConnection;
             _queryString = queryString;
             _dataAccess = dataAccess;
-            //_userModel = userModel;
+            _retrieveUserInput = retrieveUserInput;
         }
 
         public void RunQuery()
         {
-            List<IUserModel> user = null;
-            string sql = _queryString.CheckUser("therock");
+            //List<IUserModel> user = null;
+            string username = _retrieveUserInput.Input();
+            string sql = _queryString.CheckUser($"{ username }");
             string connection = _mySQLConnection.Connection();
-            List<UserModel> userQuery = _dataAccess.LoadData<UserModel, dynamic>(sql, new { }, connection);
+            List<UserModel> userQuery = _dataAccess.LoadData<UserModel, dynamic>(sql, new { }, connection); // using IUserMode here doesnt work???
             //userQuery = _data.LoadData<UserModel, dynamic>(sql, new { }, connection);
         }
 
