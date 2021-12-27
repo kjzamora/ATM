@@ -6,16 +6,23 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RetrieveUserMainMenuInput
+    public class RetrieveUserMainMenuInput : IRetrieveUserMainMenuInput
     {
-        public static int Input()
+        IRetrieveUserInput _retrieveUserInput;
+
+        public RetrieveUserMainMenuInput(IRetrieveUserInput retrieveUserInput)
+        {
+            _retrieveUserInput = retrieveUserInput;
+        }
+
+        public int Input()
         {
             int value;
             bool done = false;
             string line;
             do
             {
-                line = Console.ReadLine();
+                line = _retrieveUserInput.Input();
                 if (int.TryParse(line, out value))
                 {
                     if (value > 0 && value < 6)

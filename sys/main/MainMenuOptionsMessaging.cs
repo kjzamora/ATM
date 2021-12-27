@@ -2,10 +2,10 @@
 
 namespace ATM
 {
-    public class MainMenuOptionsMessaging
+    public class MainMenuOptionsMessaging : IMainMenuOptionsMessaging
     {
 
-        public static void UserOptions()
+        public void UserOptions()
         {
             Console.WriteLine("Please select one of the following options:  ");
             Console.WriteLine();

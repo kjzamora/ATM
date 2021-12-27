@@ -9,17 +9,19 @@ namespace ATM
     public class MainMenuOptions : IMainMenuOptions
     {
         ISystemMessaging _systemMessaging;
+        IWithdrawMenu _withdrawMenu;
 
-        public MainMenuOptions(ISystemMessaging systemMessaging)
+        public MainMenuOptions(ISystemMessaging systemMessaging, IWithdrawMenu withdrawMenu)
         {
             _systemMessaging = systemMessaging;
+            _withdrawMenu = withdrawMenu;
         }
         public void Selection(int selection)
         {
             switch (selection)
             {
                 case 1: // Withdraw Cash
-                    WithdrawMenu.Control();
+                    _withdrawMenu.Control();
                     break;
                 case 2: // Cash Transfer
                     break;

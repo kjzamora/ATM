@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class WithdrawMenu
+    public class WithdrawMenu : IWithdrawMenu
     {
-        public static int Control ()
+        public int Control()
         {
             WithdrawMenuOptionsMessaging.WithdrawOptions();
             int withdrawMenuOption = RetrieveWithdrawOption.Input();

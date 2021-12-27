@@ -14,18 +14,23 @@ namespace ATM
         ICheckUser _checkUser;
         IRetrieveUserInput _retrieveUserInput;
         ICheckPin _checkPin;
+        IRetrieveUserInfo _retrieveUserInfo;
+        IMainMenu _mainMenu;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin)
+        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
             _checkUser = checkUser;
             _retrieveUserInput = retrieveUserInput;
             _checkPin = checkPin;
+            _retrieveUserInfo = retrieveUserInfo;
+            _mainMenu = mainMenu;
         }
 
         public void Run()
         {
+            // User verification
             _systemMessaging.WelcomeMessage();
             _systemMessaging.UserNamePrompt();
             string userName = _retrieveUserInput.Input();
@@ -34,12 +39,10 @@ namespace ATM
             string pin = _retrieveUserInput.Input();
             _checkPin.Run(userName, pin);
 
+            // Main
+            _retrieveUserInfo.Run(userName, pin);
+            _mainMenu.Control();
 
-            //List<UserModel> userQuery;
-            //string connection = MySQLConnection.Connection();
-            ////string sql = Query.UserData($"{ userName }", $"{ pin }");
-            //string sql = QueryString.UserData("therock", "2222");
-            //userQuery = _dataAccess.LoadData<UserModel, dynamic>(sql, new { }, connection);
         }
     }
 }
