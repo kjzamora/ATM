@@ -16,8 +16,9 @@ namespace ATM
         ICheckPin _checkPin;
         IRetrieveUserInfo _retrieveUserInfo;
         IMainMenu _mainMenu;
+        IQueryString _queryString;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu)
+        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu, IQueryString queryString)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
@@ -26,6 +27,7 @@ namespace ATM
             _checkPin = checkPin;
             _retrieveUserInfo = retrieveUserInfo;
             _mainMenu = mainMenu;
+            _queryString = queryString;
         }
 
         public void Run()
@@ -40,8 +42,22 @@ namespace ATM
             _checkPin.Run(userName, pin);
 
             // Main
-            _retrieveUserInfo.Run(userName, pin);
-            _mainMenu.Control();
+            var userInfo = _retrieveUserInfo.Run(userName, pin);
+            var optionValueAndChoice = _mainMenu.Control();
+
+            // Check if withdraw calc
+            int userBalance = userInfo[0].Balance;
+            int optionValue = optionValueAndChoice.Item1;
+            int optionChoice = optionValueAndChoice.Item2;
+            int updatedBalance;
+
+            //if (optionChoice == 1)
+            //{
+                updatedBalance = WithdrawCalculation.Calc(userBalance, optionValue);
+            //}
+
+            string updatedBalanceString = updatedBalance.ToString();
+            _queryString.UpdateBalance(userName, pin, updatedBalanceString);
 
         }
     }

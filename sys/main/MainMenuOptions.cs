@@ -16,13 +16,15 @@ namespace ATM
             _systemMessaging = systemMessaging;
             _withdrawMenu = withdrawMenu;
         }
-        public void Selection(int selection)
+        public (int optionAmount, int optionChoice) Selection(int selection)
         {
             switch (selection)
             {
                 case 1: // Withdraw Cash
-                    _withdrawMenu.Control();
-                    break;
+                    int optionChoice = 1;
+                    int withdrawOptionAmount =_withdrawMenu.Control();
+                    return (withdrawOptionAmount, optionChoice);
+                    // break;
                 case 2: // Cash Transfer
                     break;
                 case 3: // Desposit Cash
@@ -34,6 +36,7 @@ namespace ATM
                     System.Environment.Exit(1);
                     break;
             }
+            return (0, 0);
         }
     }
 }

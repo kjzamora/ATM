@@ -1,5 +1,7 @@
 # ATM C# Project
 
+- IN PROGRESS
+
 This is a console-based application simulating an ATM's' menu options. With this project, I had 3 main goals:
 
 - Create my first C# program and familiarize myself with the sytatx

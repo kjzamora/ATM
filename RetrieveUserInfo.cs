@@ -20,12 +20,13 @@ namespace ATM
             _dataAccess = dataAccess;
         }
 
-        public void Run(string userName, string pin)
+        public List<UserModel> Run(string userName, string pin)
         {
             List<UserModel> userQuery;
             string userInfo = _queryString.UserData($"{ userName }", $"{ pin }");
             string connection = _mySQLConnection.Connection();
             userQuery = _dataAccess.LoadData<UserModel, dynamic>(userInfo, new { }, connection);
+            return userQuery;
         }
     }
 }

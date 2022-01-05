@@ -28,6 +28,7 @@ namespace ATM
             builder.RegisterType<MainMenuOptions>().As<IMainMenuOptions>();
             builder.RegisterType<MainMenuOptionsMessaging>().As<IMainMenuOptionsMessaging>();
             builder.RegisterType<RetrieveUserMainMenuInput>().As<IRetrieveUserMainMenuInput>();
+            builder.RegisterType<WithdrawMenu>().As<IWithdrawMenu>();
 
             return builder.Build();
         }

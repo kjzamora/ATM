@@ -2,6 +2,6 @@
 {
     public interface IMainMenu
     {
-        void Control();
+        (int, int) Control();
     }
 }

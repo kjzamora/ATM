@@ -2,6 +2,6 @@
 {
     public interface IMainMenuOptions
     {
-        void Selection(int selection);
+        (int optionAmount, int optionChoice) Selection(int selection);
     }
 }

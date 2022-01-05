@@ -18,11 +18,12 @@ namespace ATM
             _mainMenuOptionsMessaging = mainMenuOptionsMessaging;
             _retrieveUserMainMenuInput = retrieveUserMainMenuInput;
         }
-        public void Control()
+        public (int, int) Control()
         {
             _mainMenuOptionsMessaging.UserOptions();
             int mainMenuOption = _retrieveUserMainMenuInput.Input();
-            _mainMenuOptions.Selection(mainMenuOption);
+            var optionValueAndChoice = _mainMenuOptions.Selection(mainMenuOption);
+            return optionValueAndChoice;
         }
     }
 }
