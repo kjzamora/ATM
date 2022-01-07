@@ -10,26 +10,30 @@ namespace ATM
     {
         ISystemMessaging _systemMessaging;
         IWithdrawMenu _withdrawMenu;
+        IDepositMenu _depositMenu;
 
-        public MainMenuOptions(ISystemMessaging systemMessaging, IWithdrawMenu withdrawMenu)
+        public MainMenuOptions(ISystemMessaging systemMessaging, IWithdrawMenu withdrawMenu, IDepositMenu depositMenu)
         {
             _systemMessaging = systemMessaging;
             _withdrawMenu = withdrawMenu;
+            _depositMenu = depositMenu;
         }
 
         public (int optionAmount, int optionChoice) Selection(int selection)
         {
+            int optionChoice;
             switch (selection)
             {
                 case 1: // Withdraw Cash
-                    int optionChoice = 1;
+                    optionChoice = 1;
                     int withdrawOptionAmount =_withdrawMenu.Control();
                     return (withdrawOptionAmount, optionChoice);
-                    // break;
                 case 2: // Cash Transfer
                     break;
                 case 3: // Desposit Cash
-                    break;
+                    optionChoice = 3;
+                    int depositOptionAmount = _depositMenu.Control();
+                    return (depositOptionAmount, optionChoice);
                 case 4: // Display Balanace
                     break;
                 case 5: // Exit

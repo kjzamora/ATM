@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class WithdrawMenu : IWithdrawMenu
+    public class DepositMenu : IDepositMenu
     {
         IRetrieveUserCustomWithdrawInput _retrieveUserCustomWithdrawInput;
         IRetrieveWithdrawOrDepositOption _retrieveWithdrawOrDepositOption;
         ISystemMessaging _systemMessaging;
 
-        public WithdrawMenu(IRetrieveUserCustomWithdrawInput retrieveUserCustomWithdrawInput, IRetrieveWithdrawOrDepositOption retrieveWithdrawOrDepositOption, ISystemMessaging systemMessaging)
+        public DepositMenu(IRetrieveUserCustomWithdrawInput retrieveUserCustomWithdrawInput, IRetrieveWithdrawOrDepositOption retrieveWithdrawOrDepositOption, ISystemMessaging systemMessaging)
         {
             _retrieveUserCustomWithdrawInput = retrieveUserCustomWithdrawInput;
             _retrieveWithdrawOrDepositOption = retrieveWithdrawOrDepositOption;
@@ -22,17 +22,17 @@ namespace ATM
         public int Control()
         {
             _systemMessaging.QuickSelectionOptions();
-            int withdrawMenuOption = _retrieveWithdrawOrDepositOption.Input();
-            int withdrawOptionAmount;
-            if (withdrawMenuOption < 6)
+            int depositMenuOption = _retrieveWithdrawOrDepositOption.Input();
+            int depositOptionAmount;
+            if (depositMenuOption < 6)
             {
-                withdrawOptionAmount = QuickSelectionOptions.Amount(withdrawMenuOption);
+                depositOptionAmount = QuickSelectionOptions.Amount(depositMenuOption);
             }
             else
             {
-                withdrawOptionAmount = _retrieveUserCustomWithdrawInput.Input();
+                depositOptionAmount = _retrieveUserCustomWithdrawInput.Input();
             }
-            return withdrawOptionAmount;
+            return depositOptionAmount;
         }
     }
 }

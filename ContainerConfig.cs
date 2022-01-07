@@ -31,6 +31,12 @@ namespace ATM
             builder.RegisterType<WithdrawMenu>().As<IWithdrawMenu>();
             builder.RegisterType<WithdrawCalculation>().As<IWithdrawCalculation>();
             builder.RegisterType<BalanceUpdate>().As<IBalanceUpdate>();
+            builder.RegisterType<RetrieveUserCustomWithdrawInput>().As<IRetrieveUserCustomWithdrawInput>();
+            builder.RegisterType<UpdateUserInfo>().As<IUpdateUserInfo>();
+            builder.RegisterType<RetrieveWithdrawOrDepositOption>().As<IRetrieveWithdrawOrDepositOption>();
+            builder.RegisterType<QuitSelectionValidation>().As<IQuitSelectionValidation>();
+            builder.RegisterType<DepositMenu>().As<IDepositMenu>();
+            builder.RegisterType<DepositCalculation>().As<IDepositCalculation>();
 
             return builder.Build();
         }

@@ -78,8 +78,52 @@ namespace ATM
             Console.WriteLine("Please select another option.");
         }
 
+        public void CustomWithdraw()
+        {
+            Console.Write("Please enter the amount you want to withdraw: ");
+        }
+
+        public void InvalidCustomWithdraw()
+        {
+            Console.WriteLine("Invalid selection. Please try again");
+            Console.WriteLine();
+            Console.Write("Amount: ");
+        }
+
+        public void InvalidSelection()
+        {
+            Console.WriteLine("Invalid selection. Please try again");
+            Console.WriteLine();
+            Console.Write("Option: ");
+        }
+
+        public void QuickSelectionOptions()
+        {
+            Console.WriteLine("Please select any amount to withdraw:  ");
+            Console.WriteLine();
+            Console.WriteLine("     1 ---- $20");
+            Console.WriteLine("     2 ---- $40");
+            Console.WriteLine("     3 ---- $60");
+            Console.WriteLine("     4 ---- $80");
+            Console.WriteLine("     5 ---- $100");
+            Console.WriteLine("     6 ---- Other");
+            Console.WriteLine();
+            Console.Write("Option: ");
+        }
+
+        public void QuitPrompt()
+        {
+            Console.WriteLine("Would you like to make another transaction?: ");
+            Console.WriteLine();
+            Console.WriteLine("     1 ---- Yes");
+            Console.WriteLine("     2 ---- No");
+            Console.WriteLine();
+            Console.Write("Option: ");
+        }
+
         public void SystemExitMessage()
         {
+            Console.WriteLine();
             Console.WriteLine("System connection will now close.");
             Console.WriteLine();
             Console.WriteLine("Have a great day!");

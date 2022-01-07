@@ -18,8 +18,21 @@ namespace ATM
         IMainMenu _mainMenu;
         IQueryString _queryString;
         IBalanceUpdate _balanceUpdate;
+        IUpdateUserInfo _updateUserInfo;
+        IQuitSelectionValidation _quitSelectionValidation;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu, IQueryString queryString, IBalanceUpdate balanceUpdate)
+        public Application(
+            IDataAccess dataAccess,
+            ISystemMessaging systemMessaging,
+            ICheckUser checkUser,
+            IRetrieveUserInput retrieveUserInput,
+            ICheckPin checkPin,
+            IRetrieveUserInfo retrieveUserInfo,
+            IMainMenu mainMenu,
+            IQueryString queryString,
+            IBalanceUpdate balanceUpdate,
+            IUpdateUserInfo updateUserInfo,
+            IQuitSelectionValidation quitSelectionValidation)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
@@ -30,6 +43,8 @@ namespace ATM
             _mainMenu = mainMenu;
             _queryString = queryString;
             _balanceUpdate = balanceUpdate;
+            _updateUserInfo = updateUserInfo;
+            _quitSelectionValidation = quitSelectionValidation;
         }
 
         public void Run()
@@ -48,24 +63,46 @@ namespace ATM
             int userBalance = userInfo[0].Balance;
             int updatedBalance;
 
-            // Main
+            // Main Control
+            bool quit = false;
             do
             {
-                var optionValueAndChoice = _mainMenu.Control();
-                int optionValue = optionValueAndChoice.Item1;
-                int optionChoice = optionValueAndChoice.Item2;
-                updatedBalance = _balanceUpdate.Run(userBalance, optionValue, optionChoice);
-                if (userBalance == updatedBalance)
+                do
                 {
-                    // check withdraw option 6 - customer withdraw
-                    _systemMessaging.MainReprompt();
+                    var optionValueAndChoice = _mainMenu.Control();
+                    int optionValue = optionValueAndChoice.Item1;
+                    int optionChoice = optionValueAndChoice.Item2;
+                    updatedBalance = _balanceUpdate.Run(userBalance, optionValue, optionChoice);
+                    if (userBalance == updatedBalance)
+                    {
+                        _systemMessaging.MainReprompt();
+                    }
+
+                } while (userBalance == updatedBalance);
+
+                // Update balance
+                string updatedBalanceString = updatedBalance.ToString();
+                _updateUserInfo.Run(userName, pin, updatedBalanceString);
+
+                // Quit prompt and selection
+                bool quitPromptValid = false;
+                string quitOptionSelection;
+                do
+                {
+                    _systemMessaging.QuitPrompt();
+                    quitOptionSelection = _retrieveUserInput.Input();
+                    quitPromptValid = _quitSelectionValidation.Run(quit, quitOptionSelection);
+
+                } while (quitPromptValid == false);
+
+                if (quitOptionSelection == "2" )
+                {
+                    quit = true;
+                    _systemMessaging.SystemExitMessage();
+                    System.Environment.Exit(1);
                 }
-            } while (userBalance == updatedBalance);
 
-            string updatedBalanceString = updatedBalance.ToString();
-            _queryString.UpdateBalance(userName, pin, updatedBalanceString);
-            // actually run updae
-
+            } while (quit == false);
         }
     }
 }

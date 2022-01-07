@@ -11,5 +11,10 @@
         void WelcomeMessage();
         void InsufficientFunds();
         void MainReprompt();
+        void CustomWithdraw();
+        void InvalidCustomWithdraw();
+        void InvalidSelection();
+        void QuitPrompt();
+        void QuickSelectionOptions();
     }
 }

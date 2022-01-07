@@ -6,9 +6,16 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    class RetrieveWithdrawOption
+    public class RetrieveWithdrawOrDepositOption : IRetrieveWithdrawOrDepositOption
     {
-        public static int Input()
+        ISystemMessaging _systemMessaging;
+
+        public RetrieveWithdrawOrDepositOption(ISystemMessaging systemMessaging)
+        {
+            _systemMessaging = systemMessaging;
+        }
+
+        public int Input()
         {
             int value;
             bool done = false;
@@ -25,16 +32,12 @@ namespace ATM
                     }
                     else
                     {
-                        Console.WriteLine("Invalid selection. Please try again");
-                        Console.WriteLine();
-                        Console.Write("Option: ");
+                        _systemMessaging.InvalidSelection();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid selection. Please try again");
-                    Console.WriteLine();
-                    Console.Write("Option: ");
+                    _systemMessaging.InvalidSelection();
                 }
             }
             while (done == false);

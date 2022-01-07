@@ -5,10 +5,12 @@ namespace ATM
     public class BalanceUpdate : IBalanceUpdate
     {
         IWithdrawCalculation _withdrawCalculation;
+        IDepositCalculation _depositCalculation;
 
-        public BalanceUpdate(IWithdrawCalculation withdrawCalculation)
+        public BalanceUpdate(IWithdrawCalculation withdrawCalculation, IDepositCalculation depositCalculation)
         {
             _withdrawCalculation = withdrawCalculation;
+            _depositCalculation = depositCalculation;
         }
 
         public int Run(int userBalance, int optionValue, int optionChoice)
@@ -20,7 +22,7 @@ namespace ATM
             }
             else if (optionChoice == 3)
             {
-                // deposit
+                updatedBalance = _depositCalculation.Calc(userBalance, optionValue);
             }
 
             return updatedBalance;

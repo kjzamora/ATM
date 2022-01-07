@@ -2,15 +2,23 @@
 
 namespace ATM
 {
-    class RetrieveUserCustomWithdrawInput
+    public class RetrieveUserCustomWithdrawInput : IRetrieveUserCustomWithdrawInput
     {
-        public static int Input()
+        ISystemMessaging _systemMessaging;
+
+        public RetrieveUserCustomWithdrawInput(ISystemMessaging systemMessaging)
+        {
+            _systemMessaging = systemMessaging;
+        }
+
+        public int Input()
         {
             int value;
             bool done = false;
             string line;
             do
             {
+                _systemMessaging.CustomWithdraw();
                 line = Console.ReadLine();
 
                 if (int.TryParse(line, out value))
@@ -22,16 +30,12 @@ namespace ATM
                     }
                     else
                     {
-                        Console.WriteLine("Invalid selection. Please try again");
-                        Console.WriteLine();
-                        Console.Write("Amount: ");
+                        _systemMessaging.InvalidCustomWithdraw();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid selection. Please try again");
-                    Console.WriteLine();
-                    Console.Write("Amount: ");
+                    _systemMessaging.InvalidCustomWithdraw();
                 }
             }
             while (done == false);
