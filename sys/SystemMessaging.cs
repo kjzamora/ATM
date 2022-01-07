@@ -49,7 +49,7 @@ namespace ATM
 
         public string InvalidUser(string userName)
         {
-            return $"This username '{ userName }' does not exist. Please try again."; // refactor...
+            return $"This username '{ userName }' does not exist. Please try again.";
         }
 
         public void PinPrompt()
@@ -66,6 +66,16 @@ namespace ATM
         {
             Console.WriteLine("You have exceeded the number of attempts you can login. You're account will now be locked.");
             Console.WriteLine("To restore your accounts access, please contact your Administrator");
+        }
+
+        public void InsufficientFunds()
+        {
+            Console.WriteLine("Insufficient funds.");
+        }
+
+        public void MainReprompt()
+        {
+            Console.WriteLine("Please select another option.");
         }
 
         public void SystemExitMessage()

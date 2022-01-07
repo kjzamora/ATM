@@ -17,8 +17,9 @@ namespace ATM
         IRetrieveUserInfo _retrieveUserInfo;
         IMainMenu _mainMenu;
         IQueryString _queryString;
+        IBalanceUpdate _balanceUpdate;
 
-        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu, IQueryString queryString)
+        public Application(IDataAccess dataAccess, ISystemMessaging systemMessaging, ICheckUser checkUser, IRetrieveUserInput retrieveUserInput, ICheckPin checkPin, IRetrieveUserInfo retrieveUserInfo, IMainMenu mainMenu, IQueryString queryString, IBalanceUpdate balanceUpdate)
         {
             _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
@@ -28,6 +29,7 @@ namespace ATM
             _retrieveUserInfo = retrieveUserInfo;
             _mainMenu = mainMenu;
             _queryString = queryString;
+            _balanceUpdate = balanceUpdate;
         }
 
         public void Run()
@@ -41,23 +43,28 @@ namespace ATM
             string pin = _retrieveUserInput.Input();
             _checkPin.Run(userName, pin);
 
-            // Main
+            // User Info
             var userInfo = _retrieveUserInfo.Run(userName, pin);
-            var optionValueAndChoice = _mainMenu.Control();
-
-            // Check if withdraw calc
             int userBalance = userInfo[0].Balance;
-            int optionValue = optionValueAndChoice.Item1;
-            int optionChoice = optionValueAndChoice.Item2;
             int updatedBalance;
 
-            //if (optionChoice == 1)
-            //{
-                updatedBalance = WithdrawCalculation.Calc(userBalance, optionValue);
-            //}
+            // Main
+            do
+            {
+                var optionValueAndChoice = _mainMenu.Control();
+                int optionValue = optionValueAndChoice.Item1;
+                int optionChoice = optionValueAndChoice.Item2;
+                updatedBalance = _balanceUpdate.Run(userBalance, optionValue, optionChoice);
+                if (userBalance == updatedBalance)
+                {
+                    // check withdraw option 6 - customer withdraw
+                    _systemMessaging.MainReprompt();
+                }
+            } while (userBalance == updatedBalance);
 
             string updatedBalanceString = updatedBalance.ToString();
             _queryString.UpdateBalance(userName, pin, updatedBalanceString);
+            // actually run updae
 
         }
     }

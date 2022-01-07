@@ -9,5 +9,7 @@
         void SystemExitMessage();
         void UserNamePrompt();
         void WelcomeMessage();
+        void InsufficientFunds();
+        void MainReprompt();
     }
 }

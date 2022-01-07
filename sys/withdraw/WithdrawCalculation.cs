@@ -7,19 +7,24 @@ using System.Threading.Tasks;
 
 namespace ATM
 {
-    public class WithdrawCalculation
+    public class WithdrawCalculation : IWithdrawCalculation
     {
-        public static int Calc(int userBalance, int amount)
+        ISystemMessaging _systemMessaging;
+
+        public WithdrawCalculation(ISystemMessaging systemMessaging)
         {
-            // Current balance
+            _systemMessaging = systemMessaging;
+        }
+        public int Calc(int userBalance, int amount)
+        {
+
             if (userBalance < 0 || userBalance - amount < 0)
             {
-                Console.WriteLine("Insufficient funds.");
+                _systemMessaging.InsufficientFunds();
                 return userBalance;
-                //WithdrawMenu.Control(); // not sure if this is best practice... feel like it should throw an error and return control back to main instead...
             }
 
-            return userBalance - amount; 
+            return userBalance - amount;
         }
     }
 }
