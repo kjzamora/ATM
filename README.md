@@ -6,6 +6,9 @@ This is a console-based application simulating an ATM's' menu options. With this
 - Introduce myself to MySQL and the interactions between a program and an external database (locally hosted)
 - Attempt to properly implement and familiarize myself with the SOLID principles
 
+## Latest Exe Release
+[ATM.exe](https://github.com/kjzamora/ATM/releases/download/v0.1.0/ATM_0.1.0_Installer.zip)
+
 ## Dependencies
 This project utilizes some additional projects and librarys:
 
