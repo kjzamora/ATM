@@ -35,6 +35,7 @@ namespace ATM
                     int depositOptionAmount = _depositMenu.Control();
                     return (depositOptionAmount, optionChoice);
                 case 4: // Display Balanace
+                    //optionChoice = 4;
                     break;
                 case 5: // Exit
                     _systemMessaging.SystemExitMessage();

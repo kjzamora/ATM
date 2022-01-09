@@ -20,6 +20,10 @@ namespace ATM
             {
                 updatedBalance = _withdrawCalculation.Calc(userBalance, optionValue);
             }
+            else if (optionChoice == 2)
+            {
+                // transfer
+            }
             else if (optionChoice == 3)
             {
                 updatedBalance = _depositCalculation.Calc(userBalance, optionValue);
