@@ -1,7 +1,8 @@
 ﻿using System;
 
 namespace ATM
-{    public class RetrieveUserCustomInput : IRetrieveUserCustomInput
+{
+    public class RetrieveUserCustomInput : IRetrieveUserCustomInput
     {
         ISystemMessaging _systemMessaging;
 

@@ -7,7 +7,7 @@
             int amount = 0;
             switch (mainMenuOption)
             {
-                
+
                 case 1:
                     amount = 20;
                     break;

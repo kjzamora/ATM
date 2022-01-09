@@ -20,7 +20,7 @@
             {
                 case 1: // Withdraw Cash
                     optionChoice = 1;
-                    int withdrawOptionAmount =_withdrawMenu.Control();
+                    int withdrawOptionAmount = _withdrawMenu.Control();
                     return (withdrawOptionAmount, optionChoice);
                 case 2: // Desposit Cash
                     optionChoice = 2;

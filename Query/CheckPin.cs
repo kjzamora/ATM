@@ -20,7 +20,7 @@ namespace ATM
             _mySQLConnection = mySQLConnection;
             _dataAccess = dataAccess;
         }
-        
+
         internal static bool QueryIsNullOrNot(string message, List<UserModel> userModelObj)
         {
             if (userModelObj.Count != 0)
