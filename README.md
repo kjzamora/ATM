@@ -56,4 +56,6 @@ And initialize some user data:
   <img src="docs/images/MySQL_userdb_tlbuseraccount_userdata.png" width="1000" title="tbluseraccount properties">
 </p>
 
-We are now ready to use the ATM!
+
+
+## We are now ready to use the ATM!
