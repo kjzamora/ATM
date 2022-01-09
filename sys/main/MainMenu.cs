@@ -1,4 +1,6 @@
-﻿namespace ATM
+﻿using System;
+
+namespace ATM
 {
     public class MainMenu : IMainMenu
     {
@@ -14,6 +16,7 @@
         }
         public (int, int) Control()
         {
+            Console.Clear();
             _systemMessaging.MainMenuUserOptions();
             int mainMenuOption = _retrieveUserMainMenuInput.Input();
             var optionValueAndChoice = _mainMenuOptions.Selection(mainMenuOption);

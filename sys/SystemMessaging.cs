@@ -115,6 +115,13 @@ namespace ATM
             Console.WriteLine();
         }
 
+        public void TransactionSuccessful()
+        {
+            Console.WriteLine();
+            Console.WriteLine("Your transaction was successful.");
+            Console.WriteLine();
+        }
+
         public void QuickSelectionOptions()
         {
             Console.WriteLine();

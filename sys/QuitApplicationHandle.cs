@@ -1,4 +1,6 @@
-﻿namespace ATM
+﻿using System;
+
+namespace ATM
 {
     public class QuitApplicationHandle : IQuitApplicationHandle
     {
@@ -13,10 +15,11 @@
             _quitSelectionValidation = quitSelectionValidation;
         }
 
-        public bool Run(bool quit, out bool quitPromptValid, out string quitOptionSelection)
+        public bool Run(bool quit, out bool quitPromptValid, out string quitOptionSelection, int sleep)
         {
             do
             {
+                Console.Clear();
                 _systemMessaging.QuitPrompt();
                 quitOptionSelection = _retrieveUserInput.Input();
                 quitPromptValid = _quitSelectionValidation.Run(quit, quitOptionSelection);
@@ -27,6 +30,7 @@
             {
                 quit = true;
                 _systemMessaging.SystemExitMessage();
+                System.Threading.Thread.Sleep(sleep);
                 System.Environment.Exit(1);
             }
 

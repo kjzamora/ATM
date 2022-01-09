@@ -18,5 +18,6 @@
         void QuickSelectionOptions();
         void DisplayBalance(string userBalanceReadable);
         void MainMenuUserOptions();
+        void TransactionSuccessful();
     }
 }

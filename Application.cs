@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace ATM
 {
@@ -51,6 +52,7 @@ namespace ATM
             var userInfo = _retrieveUserInfo.Run(userName, pin);
             int userBalance = userInfo[0].Balance;
             int updatedBalance;
+            int sleep = 3000;
 
             // Main Control
             bool quit = false;
@@ -68,6 +70,9 @@ namespace ATM
                         updatedBalanceString = updatedBalance.ToString();
                         _updateUserInfo.Run(userName, pin, updatedBalanceString);
                         userBalance = updatedBalance;
+                        Console.Clear();
+                        _systemMessaging.TransactionSuccessful();
+                        System.Threading.Thread.Sleep(sleep);
                         break;
                     case 2:
                         // Update Deposit Balance
@@ -75,15 +80,20 @@ namespace ATM
                         updatedBalanceString = updatedBalance.ToString();
                         _updateUserInfo.Run(userName, pin, updatedBalanceString);
                         userBalance = updatedBalance;
+                        Console.Clear();
+                        _systemMessaging.TransactionSuccessful();
+                        System.Threading.Thread.Sleep(sleep);
                         break;
                     case 3:
                         // Display Balance
                         string userBalanceReadable = userBalance.ToString("C", CultureInfo.CurrentCulture);
                         _systemMessaging.DisplayBalance(userBalanceReadable);
+                        System.Threading.Thread.Sleep(sleep);
                         break;
                     case 4:
                         // Quit
                         _systemMessaging.SystemExitMessage();
+                        System.Threading.Thread.Sleep(sleep);
                         System.Environment.Exit(1);
                         break;
                 }
@@ -91,7 +101,7 @@ namespace ATM
                 // Continuation prompt and selection
                 bool quitPromptValid = false;
                 string quitOptionSelection;
-                quit = _quitApplicationHandle.Run(quit, out quitPromptValid, out quitOptionSelection);
+                quit = _quitApplicationHandle.Run(quit, out quitPromptValid, out quitOptionSelection, sleep);
 
             } while (quit == false);
         }
