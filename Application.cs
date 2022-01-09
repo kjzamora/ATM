@@ -10,7 +10,6 @@ namespace ATM
         ICheckPin _checkPin;
         IRetrieveUserInfo _retrieveUserInfo;
         IMainMenu _mainMenu;
-        IBalanceUpdate _balanceUpdate;
         IUpdateUserInfo _updateUserInfo;
         IQuitApplicationHandle _quitApplicationHandle;
         IUpdate _update;
@@ -22,7 +21,6 @@ namespace ATM
             ICheckPin checkPin,
             IRetrieveUserInfo retrieveUserInfo,
             IMainMenu mainMenu,
-            IBalanceUpdate balanceUpdate,
             IUpdateUserInfo updateUserInfo,
             IQuitApplicationHandle quitApplicationHandle,
             IUpdate update)
@@ -33,7 +31,6 @@ namespace ATM
             _checkPin = checkPin;
             _retrieveUserInfo = retrieveUserInfo;
             _mainMenu = mainMenu;
-            _balanceUpdate = balanceUpdate;
             _updateUserInfo = updateUserInfo;
             _quitApplicationHandle = quitApplicationHandle;
             _update = update;
