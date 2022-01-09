@@ -1,9 +1,4 @@
 ﻿using Autofac;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM
 {
@@ -26,17 +21,18 @@ namespace ATM
             builder.RegisterType<RetrieveUserInfo>().As<IRetrieveUserInfo>();
             builder.RegisterType<MainMenu>().As<IMainMenu>();
             builder.RegisterType<MainMenuOptions>().As<IMainMenuOptions>();
-            builder.RegisterType<MainMenuOptionsMessaging>().As<IMainMenuOptionsMessaging>();
             builder.RegisterType<RetrieveUserMainMenuInput>().As<IRetrieveUserMainMenuInput>();
             builder.RegisterType<WithdrawMenu>().As<IWithdrawMenu>();
             builder.RegisterType<WithdrawCalculation>().As<IWithdrawCalculation>();
             builder.RegisterType<BalanceUpdate>().As<IBalanceUpdate>();
-            builder.RegisterType<RetrieveUserCustomWithdrawInput>().As<IRetrieveUserCustomWithdrawInput>();
+            builder.RegisterType<RetrieveUserCustomInput>().As<IRetrieveUserCustomInput>();
             builder.RegisterType<UpdateUserInfo>().As<IUpdateUserInfo>();
             builder.RegisterType<RetrieveWithdrawOrDepositOption>().As<IRetrieveWithdrawOrDepositOption>();
             builder.RegisterType<QuitSelectionValidation>().As<IQuitSelectionValidation>();
             builder.RegisterType<DepositMenu>().As<IDepositMenu>();
             builder.RegisterType<DepositCalculation>().As<IDepositCalculation>();
+            builder.RegisterType<QuitApplicationHandle>().As<IQuitApplicationHandle>();
+            builder.RegisterType<Update>().As<IUpdate>();
 
             return builder.Build();
         }

@@ -1,9 +1,5 @@
 ﻿using ATM.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ATM
 {
@@ -23,7 +19,6 @@ namespace ATM
         public List<UserModel> Run(string userName, string pin, string balance)
         {
             List<UserModel> userQuery;
-            //string userInfo = _queryString.UserData($"{ userName }", $"{ pin }");
             string userInfo = _queryString.UpdateBalance($"{ userName }", $"{ pin }", $"{ balance }");
             string connection = _mySQLConnection.Connection();
             userQuery = _dataAccess.LoadData<UserModel, dynamic>(userInfo, new { }, connection);

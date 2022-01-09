@@ -16,5 +16,7 @@
         void InvalidSelection();
         void QuitPrompt();
         void QuickSelectionOptions();
+        void DisplayBalance(string userBalanceReadable);
+        void MainMenuUserOptions();
     }
 }

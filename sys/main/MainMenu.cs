@@ -1,26 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
     public class MainMenu : IMainMenu
     {
         IMainMenuOptions _mainMenuOptions;
-        IMainMenuOptionsMessaging _mainMenuOptionsMessaging;
+        ISystemMessaging _systemMessaging;
         IRetrieveUserMainMenuInput _retrieveUserMainMenuInput;
 
-        public MainMenu(IMainMenuOptions mainMenuOptions, IMainMenuOptionsMessaging mainMenuOptionsMessaging, IRetrieveUserMainMenuInput retrieveUserMainMenuInput)
+        public MainMenu(IMainMenuOptions mainMenuOptions, IRetrieveUserMainMenuInput retrieveUserMainMenuInput, ISystemMessaging systemMessaging)
         {
             _mainMenuOptions = mainMenuOptions;
-            _mainMenuOptionsMessaging = mainMenuOptionsMessaging;
+            _systemMessaging = systemMessaging;
             _retrieveUserMainMenuInput = retrieveUserMainMenuInput;
         }
         public (int, int) Control()
         {
-            _mainMenuOptionsMessaging.UserOptions();
+            _systemMessaging.MainMenuUserOptions();
             int mainMenuOption = _retrieveUserMainMenuInput.Input();
             var optionValueAndChoice = _mainMenuOptions.Selection(mainMenuOption);
             return optionValueAndChoice;

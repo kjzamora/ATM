@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using ATM.Models;
-using MySql.Data.MySqlClient;
-using Dapper;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
 
 namespace ATM
 {

@@ -15,7 +15,6 @@
             if (quitOptionSelection == "1" || quitOptionSelection == "2")
             {
                 quit = true;
-                //_systemMessaging.SystemExitMessage();
             }
             else
             {

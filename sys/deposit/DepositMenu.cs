@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
     public class DepositMenu : IDepositMenu
     {
-        IRetrieveUserCustomWithdrawInput _retrieveUserCustomWithdrawInput;
+        IRetrieveUserCustomInput _retrieveUserCustomInput;
         IRetrieveWithdrawOrDepositOption _retrieveWithdrawOrDepositOption;
         ISystemMessaging _systemMessaging;
 
-        public DepositMenu(IRetrieveUserCustomWithdrawInput retrieveUserCustomWithdrawInput, IRetrieveWithdrawOrDepositOption retrieveWithdrawOrDepositOption, ISystemMessaging systemMessaging)
+        public DepositMenu(IRetrieveUserCustomInput retrieveUserCustomInput, IRetrieveWithdrawOrDepositOption retrieveWithdrawOrDepositOption, ISystemMessaging systemMessaging)
         {
-            _retrieveUserCustomWithdrawInput = retrieveUserCustomWithdrawInput;
+            _retrieveUserCustomInput = retrieveUserCustomInput;
             _retrieveWithdrawOrDepositOption = retrieveWithdrawOrDepositOption;
             _systemMessaging = systemMessaging;
         }
@@ -30,7 +24,7 @@ namespace ATM
             }
             else
             {
-                depositOptionAmount = _retrieveUserCustomWithdrawInput.Input();
+                depositOptionAmount = _retrieveUserCustomInput.Input();
             }
             return depositOptionAmount;
         }

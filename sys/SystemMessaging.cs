@@ -68,6 +68,18 @@ namespace ATM
             Console.WriteLine("To restore your accounts access, please contact your Administrator");
         }
 
+        public void MainMenuUserOptions()
+        {
+            Console.WriteLine("Please select one of the following options:  ");
+            Console.WriteLine();
+            Console.WriteLine("     1 ---- Withdraw Cash");
+            Console.WriteLine("     2 ---- Deposit Cash");
+            Console.WriteLine("     3 ---- Display Balance");
+            Console.WriteLine("     4 ---- Exit");
+            Console.WriteLine();
+            Console.Write("Option: ");
+        }
+
         public void InsufficientFunds()
         {
             Console.WriteLine("Insufficient funds.");
@@ -96,10 +108,17 @@ namespace ATM
             Console.WriteLine();
             Console.Write("Option: ");
         }
+        public void DisplayBalance(string userBalanceReadable)
+        {
+            Console.WriteLine();
+            Console.WriteLine($"Your balance is: { userBalanceReadable }");
+            Console.WriteLine();
+        }
 
         public void QuickSelectionOptions()
         {
-            Console.WriteLine("Please select any amount to withdraw:  ");
+            Console.WriteLine();
+            Console.WriteLine("Please select any amount:  ");
             Console.WriteLine();
             Console.WriteLine("     1 ---- $20");
             Console.WriteLine("     2 ---- $40");

@@ -1,50 +1,42 @@
-﻿using ATM.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 
 namespace ATM
 {
     public class Application : IApplication
     {
-        IDataAccess _dataAccess;
         ISystemMessaging _systemMessaging;
         ICheckUser _checkUser;
         IRetrieveUserInput _retrieveUserInput;
         ICheckPin _checkPin;
         IRetrieveUserInfo _retrieveUserInfo;
         IMainMenu _mainMenu;
-        IQueryString _queryString;
         IBalanceUpdate _balanceUpdate;
         IUpdateUserInfo _updateUserInfo;
-        IQuitSelectionValidation _quitSelectionValidation;
+        IQuitApplicationHandle _quitApplicationHandle;
+        IUpdate _update;
 
         public Application(
-            IDataAccess dataAccess,
             ISystemMessaging systemMessaging,
             ICheckUser checkUser,
             IRetrieveUserInput retrieveUserInput,
             ICheckPin checkPin,
             IRetrieveUserInfo retrieveUserInfo,
             IMainMenu mainMenu,
-            IQueryString queryString,
             IBalanceUpdate balanceUpdate,
             IUpdateUserInfo updateUserInfo,
-            IQuitSelectionValidation quitSelectionValidation)
+            IQuitApplicationHandle quitApplicationHandle,
+            IUpdate update)
         {
-            _dataAccess = dataAccess;
             _systemMessaging = systemMessaging;
             _checkUser = checkUser;
             _retrieveUserInput = retrieveUserInput;
             _checkPin = checkPin;
             _retrieveUserInfo = retrieveUserInfo;
             _mainMenu = mainMenu;
-            _queryString = queryString;
             _balanceUpdate = balanceUpdate;
             _updateUserInfo = updateUserInfo;
-            _quitSelectionValidation = quitSelectionValidation;
+            _quitApplicationHandle = quitApplicationHandle;
+            _update = update;
         }
 
         public void Run()
@@ -67,40 +59,42 @@ namespace ATM
             bool quit = false;
             do
             {
-                do
+                var optionValueAndChoice = _mainMenu.Control();
+                int optionValue = optionValueAndChoice.Item1;
+                int optionChoice = optionValueAndChoice.Item2;
+                string updatedBalanceString;
+                switch (optionChoice)
                 {
-                    var optionValueAndChoice = _mainMenu.Control();
-                    int optionValue = optionValueAndChoice.Item1;
-                    int optionChoice = optionValueAndChoice.Item2;
-                    updatedBalance = _balanceUpdate.Run(userBalance, optionValue, optionChoice);
-                    if (userBalance == updatedBalance)
-                    {
-                        _systemMessaging.MainReprompt();
-                    }
+                    case 1:
+                        // Update Withdraw Balance
+                        updatedBalance = _update.Run(userBalance, optionValue, optionChoice);
+                        updatedBalanceString = updatedBalance.ToString();
+                        _updateUserInfo.Run(userName, pin, updatedBalanceString);
+                        userBalance = updatedBalance;
+                        break;
+                    case 2:
+                        // Update Deposit Balance
+                        updatedBalance = _update.Run(userBalance, optionValue, optionChoice);
+                        updatedBalanceString = updatedBalance.ToString();
+                        _updateUserInfo.Run(userName, pin, updatedBalanceString);
+                        userBalance = updatedBalance;
+                        break;
+                    case 3:
+                        // Display Balance
+                        string userBalanceReadable = userBalance.ToString("C", CultureInfo.CurrentCulture);
+                        _systemMessaging.DisplayBalance(userBalanceReadable);
+                        break;
+                    case 4:
+                        // Quit
+                        _systemMessaging.SystemExitMessage();
+                        System.Environment.Exit(1);
+                        break;
+                }
 
-                } while (userBalance == updatedBalance);
-
-                // Update balance
-                string updatedBalanceString = updatedBalance.ToString();
-                _updateUserInfo.Run(userName, pin, updatedBalanceString);
-
-                // Quit prompt and selection
+                // Continuation prompt and selection
                 bool quitPromptValid = false;
                 string quitOptionSelection;
-                do
-                {
-                    _systemMessaging.QuitPrompt();
-                    quitOptionSelection = _retrieveUserInput.Input();
-                    quitPromptValid = _quitSelectionValidation.Run(quit, quitOptionSelection);
-
-                } while (quitPromptValid == false);
-
-                if (quitOptionSelection == "2" )
-                {
-                    quit = true;
-                    _systemMessaging.SystemExitMessage();
-                    System.Environment.Exit(1);
-                }
+                quit = _quitApplicationHandle.Run(quit, out quitPromptValid, out quitOptionSelection);
 
             } while (quit == false);
         }

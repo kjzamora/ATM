@@ -1,12 +1,11 @@
 ﻿using System;
 
 namespace ATM
-{
-    public class RetrieveUserCustomWithdrawInput : IRetrieveUserCustomWithdrawInput
+{    public class RetrieveUserCustomInput : IRetrieveUserCustomInput
     {
         ISystemMessaging _systemMessaging;
 
-        public RetrieveUserCustomWithdrawInput(ISystemMessaging systemMessaging)
+        public RetrieveUserCustomInput(ISystemMessaging systemMessaging)
         {
             _systemMessaging = systemMessaging;
         }

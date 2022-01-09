@@ -1,6 +1,4 @@
-﻿
-
-namespace ATM
+﻿namespace ATM
 {
     public class BalanceUpdate : IBalanceUpdate
     {
@@ -22,11 +20,11 @@ namespace ATM
             }
             else if (optionChoice == 2)
             {
-                // transfer
+                updatedBalance = _depositCalculation.Calc(userBalance, optionValue);
             }
             else if (optionChoice == 3)
             {
-                updatedBalance = _depositCalculation.Calc(userBalance, optionValue);
+                // display balance
             }
 
             return updatedBalance;

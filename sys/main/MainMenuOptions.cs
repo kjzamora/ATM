@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
     public class MainMenuOptions : IMainMenuOptions
     {
@@ -28,16 +22,14 @@ namespace ATM
                     optionChoice = 1;
                     int withdrawOptionAmount =_withdrawMenu.Control();
                     return (withdrawOptionAmount, optionChoice);
-                case 2: // Cash Transfer
-                    break;
-                case 3: // Desposit Cash
-                    optionChoice = 3;
+                case 2: // Desposit Cash
+                    optionChoice = 2;
                     int depositOptionAmount = _depositMenu.Control();
                     return (depositOptionAmount, optionChoice);
-                case 4: // Display Balanace
-                    //optionChoice = 4;
-                    break;
-                case 5: // Exit
+                case 3: // Display Balanace
+                    optionChoice = 3;
+                    return (0, optionChoice); // likely a better way... could add special handling to mainmenu, but that breaks single-responsibility principle...
+                case 4: // Exit
                     _systemMessaging.SystemExitMessage();
                     System.Environment.Exit(1);
                     break;

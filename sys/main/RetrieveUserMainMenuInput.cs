@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ATM
+﻿namespace ATM
 {
     public class RetrieveUserMainMenuInput : IRetrieveUserMainMenuInput
     {
         IRetrieveUserInput _retrieveUserInput;
+        ISystemMessaging _systemMessaging;
 
-        public RetrieveUserMainMenuInput(IRetrieveUserInput retrieveUserInput)
+        public RetrieveUserMainMenuInput(IRetrieveUserInput retrieveUserInput, ISystemMessaging systemMessaging)
         {
             _retrieveUserInput = retrieveUserInput;
+            _systemMessaging = systemMessaging;
         }
 
         public int Input()
@@ -32,16 +28,12 @@ namespace ATM
                     }
                     else
                     {
-                        Console.WriteLine("Invalid selection. Please try again");
-                        Console.WriteLine();
-                        Console.Write("Option: ");
+                        _systemMessaging.InvalidSelection();
                     }
                 }
                 else
                 {
-                    Console.WriteLine("Invalid selection. Please try again");
-                    Console.WriteLine();
-                    Console.Write("Option: ");
+                    _systemMessaging.InvalidSelection();
                 }
             }
             while (done == false);
