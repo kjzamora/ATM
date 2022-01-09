@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using System;
 
 namespace ATM
 {
@@ -6,6 +7,7 @@ namespace ATM
     {
         static void Main(string[] args)
         {
+            Console.Title = "ATM";
             var container = ContainerConfig.Configure();
             using (var scope = container.BeginLifetimeScope())
             {
