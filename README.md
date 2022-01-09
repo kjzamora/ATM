@@ -2,7 +2,7 @@
 
 This is a console-based application simulating an ATM's' menu options. With this project, I had 3 main goals:
 
-- Create my first C# program and familiarize myself with the sytatx
+- Create my first C# program and familiarize myself with the syntax
 - Introduce myself to MySQL and the interactions between a program and an external database (locally hosted)
 - Attempt to properly implement and familiarize myself with the SOLID principles
 
